@@ -1,0 +1,2 @@
+#解决redux深复制之后页面没有render的问题
+可以在<code>componentWillReceiveProps</code>中，将变量设置在state中
