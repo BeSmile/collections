@@ -12,7 +12,7 @@ then
     cn="[BeSmile]"
     cm="[l735465519@gmail.com]"
 fi
-if [ "$GIT_AUTHOR_EMAIL" = "[Your Old Email]" ]
+if [ "$GIT_AUTHOR_EMAIL" = "[l735465519@gmail.com]" ]
 then
     an="[BeSmile]"
     am="[l735465519@gmail.com]"
