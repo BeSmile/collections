@@ -1,0 +1,41 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+)
+
+type Movie struct {
+	Title string
+	Year int `json:"released"`
+	Color bool `json:"color,omitempty"`
+	Actors []string
+	Show 	bool
+}
+
+func main() {
+	var movies = [] Movie{
+		{Title: "Casablanca", Year: 1942, Color: false,
+			Actors: []string{"Humphrey Bogart", "Ingrid Bergman"}},
+		{Title: "Cool Hand Luke", Year: 1967, Color: true,
+			Actors: []string{"Paul Newman"}},
+		{Title: "Bullitt", Year: 1968, Color: true,
+			Actors: []string{"Steve McQueen", "Jacqueline Bisset"}},
+	}
+
+	data, err := json.MarshalIndent(movies, "", " ")
+	if err != nil {
+		log.Fatalf("Json marshaling failed %s",err)
+	}
+	fmt.Printf("%s", data)
+
+	jsonStr := `[{"Title":"Casablanca","released":1942,"Actors":["Humphrey Bogart","Ingrid Bergman"]},{"Title":"Cool Hand Luke","released":1967,"color":true,"Actors":["Paul Newman"]},{"Title":"Bullitt","released":1968,"color":true,"Actors":["Steve McQueen","Jacqueline Bisset"]}]`
+
+	var output [] Movie
+
+	if err := json.Unmarshal([]byte(jsonStr), &output); err != nil {
+		log.Fatalf("Json Unmarshal failed %s",err)
+	}
+	fmt.Printf("%#v \n", output)
+}
