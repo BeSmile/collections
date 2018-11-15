@@ -6,7 +6,6 @@ import (
 	// "strconv"
 )
 
-
 func addBinary(a string, b string) string {
 
 	return ""

@@ -22,20 +22,20 @@ func main() {
 	flag.Parse()
 	fmt.Println(*action)
 	switch *action {
-		case "sha256":
-			output := sha256.Sum256([]byte(*value))
-			fmt.Printf("action: %s %x \n", *action, output)
-			return
-		case "sha384":
-			output := sha3.Sum384([]byte(*value))
-			fmt.Printf("action: %s %x \n", *action, output)
-			fmt.Println("")
-			return
-		case "sha512":
-			output := sha3.Sum512([]byte(*value))
-			fmt.Printf("action: %s %x \n", *action, output)
-			return
-		default:
-			fmt.Println("error")
+	case "sha256":
+		output := sha256.Sum256([]byte(*value))
+		fmt.Printf("action: %s %x \n", *action, output)
+		return
+	case "sha384":
+		output := sha3.Sum384([]byte(*value))
+		fmt.Printf("action: %s %x \n", *action, output)
+		fmt.Println("")
+		return
+	case "sha512":
+		output := sha3.Sum512([]byte(*value))
+		fmt.Printf("action: %s %x \n", *action, output)
+		return
+	default:
+		fmt.Println("error")
 	}
 }

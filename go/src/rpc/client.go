@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"net/rpc"
 	"log"
+	"net/rpc"
 )
 
 type Args struct {
@@ -12,7 +12,7 @@ type Args struct {
 
 const serverAddress = "localhost"
 
-func main()  {
+func main() {
 
 	args := Args{31, 24}
 

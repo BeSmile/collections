@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func swapAndProduct1(i *int, j *int, prouct *int) {
-	if(*i > *j) {
+	if *i > *j {
 		*i, *j = *j, *i
 	}
 	*prouct = *i * *j

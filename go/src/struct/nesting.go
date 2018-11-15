@@ -14,7 +14,6 @@ type Wheel struct {
 	Spokes int
 }
 
-
 func main() {
 	var w Wheel
 

@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	months := [...] string {
+	months := [...]string{
 		1: "1",
 		2: "2",
 		3: "3",

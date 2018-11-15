@@ -1,9 +1,9 @@
 package main
 
 import (
-"flag"
-"fmt"
-"strings"
+	"flag"
+	"fmt"
+	"strings"
 )
 
 var n = flag.Bool("n", false, "omit trailing newline")
@@ -13,8 +13,8 @@ func main() {
 
 	var v interface{}
 	v = 123
-	arr := [] int{1,2,3,4,5}
-	k , ok := v.(int)
+	arr := []int{1, 2, 3, 4, 5}
+	k, ok := v.(int)
 	fmt.Println(k, ok)
 	flag.Parse()
 	fmt.Println(strings.Join(flag.Args(), *p))

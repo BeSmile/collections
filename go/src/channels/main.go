@@ -8,7 +8,7 @@ import (
 /*
 	每5s钟做5个包子
 	每10s 卖出3个包子
- */
+*/
 
 func main() {
 	cook := make(chan int, 3)
@@ -22,13 +22,13 @@ func main() {
 
 			al := <-eat
 			cook <- al + 5
-			fmt.Printf("做了5个包子总共%d个包子\n", al + 5)
+			fmt.Printf("做了5个包子总共%d个包子\n", al+5)
 			time.Sleep(time.Second * 5)
 		}
 	}()
 
 	for {
-		time.Sleep(time.Second *10)
+		time.Sleep(time.Second * 10)
 		al := <-cook
 
 		al -= 3

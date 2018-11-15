@@ -7,9 +7,9 @@ import (
 
 func main() {
 	var buffer strings.Builder
-	for i := 0; i< 100; i++ {
+	for i := 0; i < 100; i++ {
 		buffer.WriteString("hello world")
 	}
-	
+
 	fmt.Println(buffer.String())
 }

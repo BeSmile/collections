@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var x = make(map[string] string)
+	var x = make(map[string]string)
 
 	x["xsf"] = "324"
 

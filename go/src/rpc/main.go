@@ -7,11 +7,11 @@ import (
 	"net/rpc"
 )
 
-type Args struct{
+type Args struct {
 	A, B int
 }
 
-type Student struct{
+type Student struct {
 	name string
 	Args
 }
@@ -28,7 +28,7 @@ func main() {
 	arith := new(Arith)
 	rpc.Register(arith)
 	rpc.HandleHTTP()
-	
+
 	error := http.ListenAndServe(":1234", nil)
 
 	if error != nil {
