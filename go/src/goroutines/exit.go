@@ -10,12 +10,12 @@ func main() {
 	exitChan := make(chan int)
 	go task1(exitChan)
 	go task2(exitChan)
-	time.Sleep(2 * time.Second)
-	close(exitChan)
+	time.Sleep(10 * time.Second)
+	//close(exitChan)
 }
 
 func task1(exitChan chan int) {
-	//<-exitChan
+	<-exitChan
 	log.Printf("task1 exiting")
 }
 
