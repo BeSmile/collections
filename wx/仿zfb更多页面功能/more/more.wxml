@@ -1,0 +1,288 @@
+<!--pages/more/more.wxml-->
+<view class="more {{ edit?'edit':'' }}">
+  <view class="top">
+    <view class='tip'>我的设置</view>
+    <view class='center clearfix'>
+      <view class='item'>
+        <image src="../../images/os/c.png" />
+      </view>
+      <view class='item'>
+        <image src="../../images/os/s.png" />
+      </view>
+      <view class='item'>
+        <image src="../../images/os/u.png" />
+      </view>
+      <view class='item'>
+        <image src="../../images/os/a.png" />
+      </view>
+      <view class='item'>
+        <image src="../../images/os/c.png" />
+      </view>
+      <view class='item'>
+        ...
+      </view>
+    </view>
+    <view class='edit' bindtap='handleEdit'>{{!edit?'编辑':'保存'}}</view>
+  </view>
+  <view class='edit-menu grid-menu bg-white row'>
+    <view class='grid-menu-item col-4'>
+      <view class='item'>
+        <image class='icon' src="../../images/os/c.png" />
+        <view>激活码量</view>
+        <text class='close'>-</text>
+      </view>
+    </view>
+    <view class='grid-menu-item col-4'>
+      <view class='item'>
+        <image class='icon' src="../../images/os/c.png" />
+        <view>兑奖次数</view>
+        <text class='close'>-</text>
+      </view>
+    </view>
+    <view class='grid-menu-item col-4'>
+      <view class='item'>
+        <image class='icon' src="../../images/os/c.png" />
+        <view>扫码个数</view>
+        <text class='close'>-</text>
+      </view>
+    </view>
+    <view class='grid-menu-item col-4'>
+      <view class='item'>
+        <image class='icon' src="../../images/os/c.png" />
+        <view>报废码量</view>
+        <text class='close'>-</text>
+      </view>
+    </view>
+    <view class='grid-menu-item col-4'>
+      <view class='item'>
+        <image class='icon' src="../../images/os/c.png" />
+        <view>扫码个数</view>
+        <text class='close'>-</text>
+      </view>
+    </view>
+    <view class='grid-menu-item col-4'>
+      <view class='item'>
+        <image class='icon' src="../../images/os/c.png" />
+        <view>产品个数</view>
+        <text class='close'>-</text>
+      </view>
+    </view>
+    <view class='grid-menu-item col-4 empty'>
+      <view class='item'>
+
+      </view>
+    </view>
+  </view>
+  <view class='content bg-white'>
+    <view class='margin-t-20'>
+      <view class='tabs clearfix'>
+        <view class='tab-item active'>二维码</view>
+        <view class='tab-item'>活动</view>
+        <view class='tab-item'>参与用户</view>
+        <view class='tab-item'>发放金额</view>
+      </view>
+      <view class='line'></view>
+      <view></view>
+    </view>
+    <view class='row grid'>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/32.png"></image>
+          <view class='title'>
+            激活码量
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='close'>-</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/19.png"></image>
+          <view class='title'>
+            激活码量
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/12.png"></image>
+          <view class='title'>
+            扫码个数
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/67.png"></image>
+          <view class='title'>
+            批次总数
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/71.png"></image>
+          <view class='title'>
+            发码总数
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='font-size-28 fweight-600 padding-20'>
+      活动
+    </view>
+    <view class='row grid'>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/32.png"></image>
+          <view class='title'>
+            兑奖次数
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/15.png"></image>
+          <view class='title'>
+            奖品个数
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/66.png"></image>
+          <view class='title'>
+            进行中
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/10.png"></image>
+          <view class='title'>
+            活动总数
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='font-size-28 fweight-600 padding-20'>
+      参与用户
+    </view>
+    <view class='row grid'>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/32.png"></image>
+          <view class='title'>
+            活跃用户
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/15.png"></image>
+          <view class='title'>
+            老用户
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/66.png"></image>
+          <view class='title'>
+            新用户
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='font-size-28 fweight-600 padding-20'>
+      发放金额
+    </view>
+    <view class='row grid'>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/15.png"></image>
+          <view class='title'>
+            退款金额
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/15.png"></image>
+          <view class='title'>
+            待领取用户
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      <view class='col-4 item'>
+        <view>
+          <image src="../../images/os/66.png"></image>
+          <view class='title'>
+            金额总数
+          </view>
+          <view class='num'>
+            2,293
+          </view>
+          <text class='plus'>+</text>
+        </view>
+      </view>
+      </view>
+  </view>
+</view>
