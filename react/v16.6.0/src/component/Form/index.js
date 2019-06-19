@@ -1,14 +1,27 @@
-import React, { lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 // import  {Button} from '../Button/index';
-const Button = lazy(() => import('../Button/index').then(Button  => {
-  console.log(2222, Button.Button);
-  return Button.Button;
-}));
+let Button;
+
+const Button1 = lazy(async () => {
+  const Bt = await import('../Button');
+  console.log(Bt, 3333);
+  return Bt;
+});
 
 export const Form = ({type}) => {
-
-  console.log(444, Button);
+  console.log(Button);
+  const aaa = Promise.all([
+    Button = lazy(() => import('../Button').then(Button => Button))
+  ]).then((a) => {
+    console.log('promise',a['status']);
+  });
+  console.log(aaa, 'aaa');
   return (
-    <Button/>
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Button/>
+      <Button1/>
+      </Suspense>
+    </div>
   )
 }
