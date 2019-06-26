@@ -4,6 +4,7 @@ import './App.css';
 import StateComponent from './state';
 import ContextComponent from './context';
 import EffectComponent from './effects';
+import FactoryComponent from './factory';
 
 function App() {
   const [ name, setName1 ] = useState("");
@@ -31,6 +32,7 @@ function App() {
         <StateComponent/>
         <ContextComponent/>
         <EffectComponent/>
+        <FactoryComponent/>
       </header>
     </div>
   );
