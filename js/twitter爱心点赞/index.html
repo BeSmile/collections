@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .heart{
+        height: 100px;
+        width: 100px;
+        background-image: url(web_heart_animation_edge.png);
+        background-position: left;
+        background-repeat: no-repeat;
+      }
+      .like{
+        animation-timing-function: steps(28, end); /* 分为步骤多少次*/
+        animation-name: heart-burst;/* 动画名称*/
+        animation-duration: 1.8s;/* 执行时间*/
+        animation-iteration-count: infinite;/* 循环次数*/
+        animation-fill-mode: forwards;
+      }
+      @keyframes heart-burst {
+          0% {
+              background-position: left
+          }
+          100% {
+              background-position: right
+          }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="heart like"></div>
+  </body>
+</html>
