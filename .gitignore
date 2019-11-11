@@ -2,3 +2,4 @@
 /go/resource/*
 update.sh
 */todo/
+.DS_Store
