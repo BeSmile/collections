@@ -3,3 +3,4 @@
 update.sh
 */todo/
 .DS_Store
+yarn.lock
