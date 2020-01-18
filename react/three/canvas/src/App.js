@@ -15,12 +15,29 @@ var VSHADER_SOURCE =
 var FSHADER_SOURCE = 'void main() {'+
   'gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);'+
 '}';
+var g_points = [];
 
+function click(ev, gl, canvas, position) {
+  var x = ev.clientX;
+  var y = ev.clientY;
+
+  var rect = ev.target.getBoundingClientRect();
+  x = ((x - rect.left) - canvas.height/2) / (canvas.height /2);
+  y = (canvas.width/2 - (y - rect.top)) / (canvas.width /2);
+  g_points.push(x);
+  g_points.push(y);
+
+  gl.clear(gl.COLOR_BUFFER_BIT);
+
+  for (var i = 0; i < g_points.length; i+=2) {
+    gl.vertexAttrib3f(position, g_points[i], g_points[i+1], 0.0);
+    gl.drawArrays(gl.POINTS, 0, 1);
+  }
+}
 
 function App() {
   useEffect(function() {
     var canvas = document.getElementById('webgl');
-    console.log(canvas, 222);
     var gl = canvas.getContext('webgl', { antialias: false, depth: false });
 
     if (!gl) {
@@ -33,7 +50,6 @@ function App() {
     }
 
     var position = gl.getAttribLocation(gl.program, 'position');
-    console.log(position);
     if (position < 0) {
       console.log('cannot get');
       return;
@@ -47,6 +63,10 @@ function App() {
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     gl.drawArrays(gl.Points, 0, 1);
+
+    canvas.onmousedown = function(ev) {
+      click(ev, gl, canvas, position)
+    }
   }, [])
   return (
     <div className="App">
