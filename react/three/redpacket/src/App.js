@@ -1,4 +1,4 @@
-import React, { useEffect, }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import logo from './logo.svg';
 import './App.css';
 // import * as THREE from 'three';
@@ -292,10 +292,12 @@ function initStats() {
     document.getElementById("Stats-output").appendChild(stats.domElement);
     return stats;
 }
-function App() {
+function App(props) {
+  const [type] = useState(props.type);
   useEffect(function() {
+    console.log('22222 init');
     init();
-  })
+  }, [type])
 
   return (
     <>
