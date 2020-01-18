@@ -5,9 +5,11 @@ import {
   initShaders,
 } from './util';
 
-var VSHADER_SOURCE = 'void main() {'+
-  'gl_Position = vec4(0.0, 0.0, 0.0, 1.0);'+
-  'gl_PointSize = 10.0;'+
+var VSHADER_SOURCE =
+  'attribute vec4 position;\n'+
+  'void main() {'+
+  'gl_Position = position;\n'+
+  'gl_PointSize = 10.0;\n'+
 '}';
 
 var FSHADER_SOURCE = 'void main() {'+
@@ -30,10 +32,21 @@ function App() {
       return
     }
 
+    var position = gl.getAttribLocation(gl.program, 'position');
+    console.log(position);
+    if (position < 0) {
+      console.log('cannot get');
+      return;
+    }
+    // gl.vertexAttrib1f(position, 1.0);
+    // gl.vertexAttrib2f(position, 1.0, 0.0);
+    gl.vertexAttrib3f(position, 1.0, 0.0, 0.0);
+    // gl.vertexAttrib4f(position, 1.0, 0.0, 0.0, 1);
+
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    gl.drawArrays(gl.Points, 0, 3);
+    gl.drawArrays(gl.Points, 0, 1);
   }, [])
   return (
     <div className="App">
