@@ -4,7 +4,7 @@
  * @Author: BeSmile
  * @Date: 2021-11-05 12:08:06
  * @LastEditors: BeSmile
- * @LastEditTime: 2021-11-05 14:09:19
+ * @LastEditTime: 2021-11-05 15:57:33
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -27,5 +27,8 @@ const reactLifecycles = singleSpaReact({
 });
 
 export const bootstrap = reactLifecycles.bootstrap;
-export const mount = reactLifecycles.mount;
+export function mount(props) {
+  console.log(props.authToken, reactLifecycles.mount(props)); // 可以在 app1 中获取到authToken参数
+  return reactLifecycles.mount(props);
+}
 export const unmount = reactLifecycles.unmount;

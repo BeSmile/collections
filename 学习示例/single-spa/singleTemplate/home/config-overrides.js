@@ -4,11 +4,30 @@
  * @Author: BeSmile
  * @Date: 2021-11-05 12:25:03
  * @LastEditors: BeSmile
- * @LastEditTime: 2021-11-05 14:15:47
+ * @LastEditTime: 2021-11-05 15:29:51
  */
 const  { StatsWriterPlugin } = require("webpack-stats-plugin");
 module.exports = {
   webpack: function(config, env) {
+    require("react-app-rewire-postcss")(config, {
+      plugins: (loader) => {
+        console.log(loader)
+        return [
+          require("postcss-flexbugs-fixes"),
+          require("postcss-preset-env")({
+            autoprefixer: {
+              flexbox: "no-2009",
+            }
+          }),
+          require("postcss-selector-namespace")({
+            namespace(css) {
+              // 前缀，如果有全局样式不需要添加的，也可以在这里过滤
+              return ".micro-frontend-home";
+            },
+          }),
+        ]
+      }
+    });
     // 应用名称
     config.output.library = 'home';
     config.output.libraryTarget = "window";

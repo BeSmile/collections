@@ -4,7 +4,7 @@
  * @Author: BeSmile
  * @Date: 2021-11-05 11:31:03
  * @LastEditors: BeSmile
- * @LastEditTime: 2021-11-05 14:03:41
+ * @LastEditTime: 2021-11-05 15:56:03
  */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -50,11 +50,13 @@ for (let i = 0, app = null; i < apps.length; i++) {
     app: async (arg) => {
       // 这里会去加载远程资源，加载完毕后，子应用暴露出 single-spa 需要的生命周期函数
       await loadResources(app.host);
-      console.log(app.host, "register");
+      console.log(window[app.name], "register");
       return window[app.name];
     },
     activeWhen: `/${app.name}`,
-    customProps: {}
+    customProps: {
+      authToken: "d83jD63UdZ6RS6f70D0"
+    }
   });
 }
 // 启动

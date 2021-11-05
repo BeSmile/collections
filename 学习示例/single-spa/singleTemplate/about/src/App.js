@@ -4,15 +4,16 @@
  * @Author: BeSmile
  * @Date: 2021-11-05 14:08:24
  * @LastEditors: BeSmile
- * @LastEditTime: 2021-11-05 14:16:53
+ * @LastEditTime: 2021-11-05 15:58:20
  */
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App(props) {
   window.env = 'about';
+  console.log(props, 'App About props');
   return (
-    <div className="App">
+    <div className=" micro-frontend-about App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

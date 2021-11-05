@@ -4,15 +4,15 @@
  * @Author: BeSmile
  * @Date: 2021-11-05 12:08:06
  * @LastEditors: BeSmile
- * @LastEditTime: 2021-11-05 14:16:46
+ * @LastEditTime: 2021-11-05 15:41:51
  */
 import logo from './logo.svg';
-import './App.css';
-
+import styles from  './App.css';
+  console.log('styles', styles);
 function App() {
   window.env = 'home';
   return (
-    <div className="App">
+    <div className="micro-frontend-home App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
