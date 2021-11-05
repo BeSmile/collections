@@ -1,0 +1,27 @@
+.nc-container .scale_text.scale_text span[data-nc-lang="_startTEXT"] {
+  display: inline-block;
+  width: 100%
+}
+
+.nc-container .scale_text.scale_text.slidetounlock span[data-nc-lang="_startTEXT"] {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(.4, #4d4d4d), color-stop(.5, #fff), color-stop(.6, #4d4d4d), color-stop(1, #4d4d4d));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: slidetounlock 3s infinite;
+  -webkit-text-size-adjust: none
+}
+
+.nc-container .nc_scale .nc-align-center.scale_text2 {
+  text-align: center;
+  text-indent: -42px
+}
+
+@-webkit-keyframes slidetounlock {
+  0% {
+    background-position: -200px 0
+  }
+
+  100% {
+    background-position: 200px 0
+  }
+}
