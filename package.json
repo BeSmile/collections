@@ -7,5 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@ant-design/pro-layout": "^7.0.1-alpha.5",
+    "axios": "^0.24.0",
+    "react-router": "^6.0.0",
+    "react-router-dom": "^6.0.0",
+    "single-spa": "^5.9.3",
+    "single-spa-react": "^4.6.0",
+    "url-join": "^4.0.1"
+  }
 }
