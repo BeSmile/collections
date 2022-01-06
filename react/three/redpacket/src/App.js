@@ -1,18 +1,19 @@
-import React, { useEffect, }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import logo from './logo.svg';
 import './App.css';
 // import * as THREE from 'three';
 import { Stats } from 'three-stats';
 import _ from 'lodash';
 var THREE = require('three');
-var OBJLoader = require('three-obj-loader');
-OBJLoader(THREE);
+// var OBJLoader = require('three-obj-loader');
+// OBJLoader(THREE);
 const innerWidth = window.innerWidth;
 
 const innerHeight = window.innerHeight;
 const width = innerWidth / 2 ;
 const height = innerHeight / 2;
 var materialArray = [];
+let keyMap = {};
 
 const Eventer = function() {
   this.pool = [];// 存储池
@@ -26,6 +27,7 @@ const Eventer = function() {
     subscribe: this.subscribe.bind(this),
     publish: this.publish.bind(this),
     draw: this.draw.bind(this),
+    growth: this.growth.bind(this),
   }
 }
 
@@ -46,6 +48,11 @@ Eventer.prototype = {
   },
   isEmptyProgress: function() {
     return this.progress.length === 0 ? true : false;
+  },
+  growth: function() {
+    this.total++;
+    const totalDom = document.getElementById('total');
+    totalDom.innerText = this.total;
   },
   // 发布消息
   publish: function(trigger, item) {
@@ -79,7 +86,7 @@ Eventer.prototype = {
     this.subscribers[trigger] = [];
   },
   // 删除队列并且
-  remove: function(mesh) {
+  remove: function(mesh, type = false) {
     const rmArray = _.remove(this.pool, function(item) {
       return item.uuid === mesh.uuid;
     });
@@ -93,10 +100,12 @@ Eventer.prototype = {
     const item = rmArray[0];
     // 释放geometry
     item.geometry.dispose();
+    if (type) {
+      this.growth();
+    }
     return item;
   },
   draw: function(speed = 1) {
-    console.log(this);
     const $this = this;
     $this.pool.forEach(function(item) {
       // 判断是否超出边界 超出边界 删除
@@ -196,6 +205,7 @@ function init() {
       length: 28,
     }).map((item, i) => {
       loader.load( `./images/store_${addZero(i+1)}.png`, function ( texture ) {
+        texture.minFilter = THREE.LinearFilter;
         materialArray[i] = new THREE.MeshBasicMaterial({
             // color: 0xff0000,
             map: texture,
@@ -214,33 +224,49 @@ function init() {
   var raycaster = new THREE.Raycaster();//光线投射，用于确定鼠标点击位置
 
   var mouse = new THREE.Vector2();//创建二维平面
-  window.addEventListener("mousedown",mousedown);//页面绑定鼠标点击事件
+  window.addEventListener("touchstart",mousedown);//页面绑定鼠标点击事件
   //点击方法
   function mousedown(e){
-      //将html坐标系转化为webgl坐标系，并确定鼠标点击位置
-      mouse.x =  e.clientX / renderer.domElement.clientWidth*2-1;
-      mouse.y =  -(e.clientY / renderer.domElement.clientHeight*2)+1;
-      // console.log(mouse);
-      //以camera为z坐标，确定所点击物体的3D空间位置
-      raycaster.setFromCamera(mouse,camera);
-      //确定所点击位置上的物体数量
-      var intersects = raycaster.intersectObjects(scene.children);
-      //选中后进行的操作
-      if(intersects.length){
-        let i = 0;
-        const changematerial = function(i) {
-          if(i < materialArray.length) {
-            setTimeout(function() {
-              intersects[0].object.material = materialArray[i];
-              changematerial(++i);
-            }, 50);
-          } else {
-            const mesh = event.remove(intersects[0].object);
-            scene.remove(mesh)
-          }
-        }
-        changematerial(i);
+    const touch = e.touches[0];
+    //将html坐标系转化为webgl坐标系，并确定鼠标点击位置
+    mouse.x =  touch.clientX / renderer.domElement.clientWidth*2-1;
+    mouse.y =  -(touch.clientY / renderer.domElement.clientHeight*2)+1;
+    console.log(mouse, e);
+    // console.log(mouse);
+    //以camera为z坐标，确定所点击物体的3D空间位置
+    raycaster.setFromCamera(mouse,camera);
+    //确定所点击位置上的物体数量
+    var intersects = raycaster.intersectObjects(scene.children);
+    //选中后进行的操作
+    console.log(intersects);
+    if (intersects.length <= 0)
+      return;
+
+    if(intersects.length){
+      if (intersects[0].object instanceof THREE.Mesh) {
+        console.log('es');
       }
+      const uuid = intersects[0].object.uuid;
+      if (keyMap[uuid] >= 0) {
+        return;
+      }
+
+      const changematerial = function(i) {
+        if(keyMap[uuid] != undefined && keyMap[uuid] < materialArray.length) {
+          setTimeout(function() {
+            intersects[0].object.material = materialArray[i];
+            changematerial(++i);
+            keyMap[uuid] = i;
+          }, 50);
+        } else {
+          const mesh = event.remove(intersects[0].object, true);
+
+          scene.remove(mesh);
+        }
+      }
+      keyMap[uuid] = 0;
+      changematerial(0);
+    }
   }
 
   camera.position.set(0, 0, 1)
@@ -248,7 +274,6 @@ function init() {
   document.body.appendChild(renderer.domElement);
   function animate() {
     stats.update();
-    // plane.position.y -= 1
     event.draw();
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
@@ -267,13 +292,17 @@ function initStats() {
     document.getElementById("Stats-output").appendChild(stats.domElement);
     return stats;
 }
-function App() {
+function App(props) {
+  const [type] = useState(props.type);
   useEffect(function() {
+    console.log('22222 init');
     init();
-  })
+  }, [type])
 
   return (
-    <></>
+    <>
+      <div id="total"></div>
+    </>
   );
 }
 

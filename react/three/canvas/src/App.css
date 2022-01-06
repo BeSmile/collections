@@ -36,11 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-#total{
-  position: absolute;
-  color: orange;
-  right: 10px;
-  top: 10px;
-}
